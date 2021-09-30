@@ -1,11 +1,7 @@
-import { ReactNode } from 'react';
+import { IReactNode } from '../../types/shared';
 import { Wrapper } from './styled';
 
-interface IProps {
-  children: ReactNode;
-}
-
-const LayoutBasePage = ({ children }: IProps) => {
+const LayoutBasePage = ({ children }: IReactNode) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
