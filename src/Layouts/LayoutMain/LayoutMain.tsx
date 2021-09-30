@@ -1,11 +1,7 @@
-import { ReactNode } from 'react';
+import { IReactNode } from '../../types/shared';
 import { Main } from './styled';
 
-interface IProps {
-  children: ReactNode;
-}
-
-const LayoutMain = ({ children }: IProps) => {
+const LayoutMain = ({ children }: IReactNode) => {
   return <Main>{children}</Main>;
 };
 

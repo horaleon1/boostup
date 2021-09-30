@@ -1,11 +1,7 @@
-import { ReactNode } from 'react';
+import { IReactNode } from '../../types/shared';
 import { Sidebar } from './styled';
 
-interface IProps {
-  children: ReactNode;
-}
-
-const LayoutSideBar = ({ children }: IProps) => {
+const LayoutSideBar = ({ children }: IReactNode) => {
   return <Sidebar>{children}</Sidebar>;
 };
 
