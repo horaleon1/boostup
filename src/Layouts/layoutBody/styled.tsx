@@ -4,7 +4,8 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  @media (min-width: 1000px) {
+  padding-bottom: 2em;
+  @media (min-width: 1200px) {
     flex-direction: row;
   }
 `;

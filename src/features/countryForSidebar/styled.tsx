@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+`;
 
 export const Title = styled.h2`
   font-size: 1.5em;
@@ -14,5 +15,6 @@ export const TitleItem = styled.span`
 export const Img = styled.img`
   height: 100px;
   width: 100px;
+  margin-left: -0.5em;
 `;
 
