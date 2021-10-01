@@ -27,7 +27,7 @@ const Histogram = () => {
 
   useEffect(() => {
     dispatch(getData('reports?date=2021-09-29&iso=USA&region_name=US'));
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const orderedData = [...data].sort((a, b) => b.confirmed - a.confirmed);
@@ -35,7 +35,7 @@ const Histogram = () => {
     dispatch(getLabels(orderedData));
     dispatch(getPositiveCases(orderedData));
     dispatch(getDeaths(orderedData));
-  }, [data, selectedState]);
+  }, [data, selectedState]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (error) {
     return (

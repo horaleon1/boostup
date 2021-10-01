@@ -1,4 +1,11 @@
-import { useState } from 'react';
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  useCallback,
+  useEffect,
+  useState,
+  useRef,
+} from 'react';
 import {
   Header,
   HeaderTitle,
@@ -9,10 +16,10 @@ import {
   WrapperChildren,
   WrapperItem,
 } from './styled';
-import ArrowDown from './ArrowDown';
 import { setStateDropdown } from '../histogram/histogramSlice';
 import { useAppDispatch } from '../../app/hooks';
 import { regions } from '../../helpers/regions';
+import ArrowDown from './ArrowDown';
 
 interface IItem {
   name: string;
@@ -29,14 +36,35 @@ export const DropdownItem = ({ name, onClick }: IItem) => {
 
 export const Dropdown = () => {
   const dispatch = useAppDispatch();
+  // For header or selected item 
   const defaultState = regions[0] ?? '';
 
   const [dropdownName, setDropdownName] = useState(defaultState);
   const [isOpen, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [dropdownData, setDropdownData] = useState(regions);
-
+  // Control open and close dropdown action
   const toggle = () => setOpen((prevState) => !prevState);
+
+  const ref = useRef<HTMLDivElement>(null);
+  // Check when user clicks outside of the dropdown area and close it.
+  const onClickOutside = useCallback(
+    (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as HTMLElement)) {
+        setOpen(false);
+      }
+    },
+    [setOpen]
+  );
+
+  useEffect(() => {
+    if (ref.current) {
+      window.addEventListener('mousedown', onClickOutside);
+    }
+    return () => {
+      window.removeEventListener('mousedown', onClickOutside);
+    };
+  });
 
   const onHandleClick = (value: string) => {
     setDropdownName(value);
@@ -46,25 +74,25 @@ export const Dropdown = () => {
     setDropdownData(regions);
   };
 
-  const onChange = (e: any) => {
-    const { value } = e.target;
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const lowerCaseValue = (e.target as HTMLInputElement).value.toLowerCase();
 
-      setInputValue(value);
-      setOpen(true);
-      const filter = dropdownData.filter((item) =>
-        item.toLowerCase().includes(value.toLowerCase())
-      );
-      setDropdownData(filter);
+    setInputValue((e.target as HTMLInputElement).value);
+    setOpen(true);
+    const filter = dropdownData.filter((item) =>
+      item.toLowerCase().includes(lowerCaseValue)
+    );
+    setDropdownData(filter);
   };
-
-  const onReset = (e: any) => {
+  // Regresh list suggestions
+  const onReset = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Backspace') {
       setDropdownData(regions);
     }
   };
-console.log(inputValue, 'inputValue');
+
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <Header onClick={toggle}>
         <HeaderTitle>{dropdownName}</HeaderTitle>
         {!inputValue && <ArrowDown />}
@@ -73,7 +101,7 @@ console.log(inputValue, 'inputValue');
         <Input
           type='text'
           placeholder='Search State'
-          onChange={(e) => onChange(e)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
           onKeyDown={(e) => onReset(e)}
           onFocus={() => setOpen(false)}
           value={inputValue}
