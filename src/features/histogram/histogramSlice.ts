@@ -24,7 +24,7 @@ export interface IRegion {
   province: string;
 }
 
-export interface IState {
+export interface IData {
   active: number;
   active_diff: number;
   confirmed: number;
@@ -41,10 +41,10 @@ export interface IState {
 export interface IHistogramState {
   isLoading: Boolean;
   error: Boolean;
-  data: IState[];
-  labels: [];
-  positiveCases: [];
-  deaths: [];
+  data: IData[];
+  labels: string[];
+  positiveCases: number[];
+  deaths: number[];
   selectedState: string;
 }
 
@@ -73,33 +73,41 @@ export const histogram = createSlice({
     getLabels: (state, action) => {
       if (state.selectedState !== 'All States') {
         const findState = action.payload.find(
-          (item: any) => item.region.province === state.selectedState
+          (item: IData) => item.region.province === state.selectedState
         );
-        state.labels = findState.region.cities.map((city: any) => city.name);
+        state.labels = findState.region.cities.map(
+          (city: ICities) => city.name
+        );
       } else {
-        state.labels = action.payload.map((item: any) => item.region.province);
+        state.labels = action.payload.map(
+          (item: IData) => item.region.province
+        );
       }
     },
     getPositiveCases: (state, action) => {
       if (state.selectedState !== 'All States') {
         const findState = action.payload.find(
-          (item: any) => item.region.province === state.selectedState
+          (item: IData) => item.region.province === state.selectedState
         );
         state.positiveCases = findState.region.cities.map(
-          (city: any) => city.confirmed
+          (city: ICities) => city.confirmed
         );
       } else {
-        state.positiveCases = action.payload.map((item: any) => item.confirmed);
+        state.positiveCases = action.payload.map(
+          (item: IData) => item.confirmed
+        );
       }
     },
     getDeaths: (state, action) => {
       if (state.selectedState !== 'All States') {
         const findState = action.payload.find(
-          (item: any) => item.region.province === state.selectedState
+          (item: IData) => item.region.province === state.selectedState
         );
-        state.deaths = findState.region.cities.map((city: any) => city.deaths);
+        state.deaths = findState.region.cities.map(
+          (city: ICities) => city.deaths
+        );
       } else {
-        state.deaths = action.payload.map((item: any) => item.deaths);
+        state.deaths = action.payload.map((item: IData) => item.deaths);
       }
     },
     setStateDropdown: (state, action) => {

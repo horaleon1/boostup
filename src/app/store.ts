@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import countryForSidebarReducer from '../features/countryForSidebar/countryForSidebarSlice';
+import countryForSidebarReducer from '../features/StatisticsForSidebar/statisticsForSidebarSlice';
 import histogramReducer from '../features/histogram/histogramSlice';
 
 export const store = configureStore({

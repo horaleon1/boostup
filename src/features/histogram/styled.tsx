@@ -29,19 +29,19 @@ export const Loader = styled.div`
   height: 40px;
   border-radius: 50%;
   border: 7px solid transparent;
-  border-top: 7px solid #979dac;
-  border-bottom: 7px solid #979dac;
+  border-top: 7px solid rgba(27, 152, 224, 0.2);
+  border-bottom: 7px solid rgba(27, 152, 224, 0.2);
   opacity: 0.8;
   animation: ${rotateOpp} 1.8s linear infinite;
   &:after {
     content: '';
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     border: 6px solid transparent;
-    border-left: 6px solid #5c677d;
-    border-right: 6px solid #5c677d;
+    border-left: 6px solid rgb(0, 100, 148);
+    border-right: 6px solid rgb(0, 100, 148);
     opacity: 0.9;
     animation: ${rotate} 0.9s linear infinite;
   }

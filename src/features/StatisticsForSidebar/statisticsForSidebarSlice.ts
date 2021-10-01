@@ -6,10 +6,10 @@ import { RootState } from '../../app/store';
 import { fetchInformation } from '../../helpers/api';
 
 export interface totalData {
-  confirmed: Number;
-  deaths: Number;
-  active_diff: Number;
-  fatality_rate: Number;
+  confirmed: number;
+  deaths: number;
+  active_diff: number;
+  fatality_rate: number;
 }
 
 export interface CountryForSidebarState {
@@ -37,7 +37,7 @@ export const getTotalData = createAsyncThunk(
   }
 );
 
-export const countryForSidebar: any = createSlice({
+export const countryForSidebar = createSlice({
   name: 'countryForSidebar',
   initialState,
   reducers: {},

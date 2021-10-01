@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
+  CountryForSidebarState,
   getTotalData,
   state,
-} from '../countryForSidebar/countryForSidebarSlice';
+} from './statisticsForSidebarSlice';
 import { Skeleton, Title, TitleItem, Wrapper } from './Styled';
 import { formatNumberWithCommas, addPercentage } from '../../helpers/formats';
 
@@ -12,13 +13,13 @@ const StatisticsForSidebar = () => {
 
   const fullState = useAppSelector(state);
 
-  const { data, isLoading, error }: any = fullState;
+  const { data, isLoading, error }: CountryForSidebarState = fullState;
 
   const { confirmed, deaths, active_diff, fatality_rate } = data;
 
   useEffect(() => {
     dispatch(getTotalData('reports/total?date=2021-09-28&iso=USA'));
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (error) {
     return (
