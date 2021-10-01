@@ -1,11 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import countryForSidebarReducer from '../features/countryForSidebar/countryForSidebarSlice';
+import histogramReducer from '../features/histogram/histogramSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     countryForSidebar: countryForSidebarReducer,
+    histogram: histogramReducer 
   },
 });
 

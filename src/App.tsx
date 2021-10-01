@@ -1,5 +1,5 @@
-import { Counter } from './features/counter/Counter';
 import Header from './features/header/Header';
+import Histogram from './features/histogram/Histogram';
 import LayoutBasePage from './layouts/layoutBasePage/LayoutBasePage';
 import LayoutBody from './layouts/layoutBody/LayoutBody';
 import LayoutMain from './layouts/layoutMain/LayoutMain';
@@ -15,7 +15,7 @@ function App() {
           <Sidebar />
         </LayoutSideBar>
         <LayoutMain>
-          <Counter />
+          <Histogram />
         </LayoutMain>
       </LayoutBody>
     </LayoutBasePage>
