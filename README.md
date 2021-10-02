@@ -2,6 +2,10 @@
 
 Goal: Create a web-application that shows histogram with drilldown visualization
 
+Live version: [https://6157a739a789f000081e27f5--inspiring-torvalds-08538a.netlify.app/](https://6157a739a789f000081e27f5--inspiring-torvalds-08538a.netlify.app/)
+
+Api: [https://covid-api.com/api/](https://covid-api.com/api/)
+
 ## Available Scripts
 
 In the project directory, you can run:
